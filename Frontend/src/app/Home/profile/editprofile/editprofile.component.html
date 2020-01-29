@@ -1,0 +1,155 @@
+<div class="row">
+<div class="col-sm-11"> 
+<h1 style="text-align:center;font-size:2vw;">Edit Your Profile</h1>
+</div>
+<div class="col-sm-1">
+<button class="btn btn-danger" (click)="close()"style="font-size:1vw;">
+  <i class="fa fa-times"></i>
+</button>
+</div>
+</div>
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your Details</ng-template>
+      <div class="row">
+        <div class="col-sm-2 col-md-1"></div>
+        <div class="col-sm-2 col-md-2" style="margin-top:10%;">
+          <div (click)="fileupload.click()" class="container">
+              <div *ngIf="imagepre==null">
+                <img class="image" src="../../../../assets/profile/default-avatar.jpg">
+              </div>
+              <div *ngIf="imagepre!=null">
+                <img class="image" src="{{imagepre}}">
+              </div>
+            <div class="overlay">
+              <div class="text">
+                <i class="fa fa-image upload-button"></i><br>
+                <a class="text">change profile</a>
+                <input #fileupload (change)="filechanged($event)" class="file-upload" type="file" accept="image/*" />
+              </div>
+            </div>
+            <div style="font-size:1.5vw;">{{profile.firstname}}</div>
+          </div>
+        </div>
+        <div class="col-sm col-md">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-6 col-md-10 col-lg-12">
+            <mat-card-content>
+              <form [formGroup]="firstFormGroup" class="my-form">
+                <mat-grid-list cols="1" rowHeight="80px">
+                  <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>First Name</mat-label>
+                      <input matInput placeholder="First name" [(ngModel)]="profile.firstname" name="fname" formControlName="firnameCtrl" required>
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Last Name</mat-label>
+                      <input matInput placeholder="Last Name" [(ngModel)]="profile.lastname" formControlName="lasnameCtrl" name="lname" required>
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Birthday:</mat-label>
+                      <input matInput [matDatepicker]="picker" [(ngModel)]="profile.birthday" placeholder="Birthday" formControlName="birCtrl" name="birthday" required>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Email</mat-label>
+                      <input matInput placeholder="Email" [(ngModel)]="profile.email" formControlName="emailCtrl"name="email" readonly>
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Mobile No:</mat-label>
+                      <input matInput [(ngModel)]="profile.mobileno" placeholder="Mobile No:"  formControlName="mobCtrl" name="mobno" required>
+                    </mat-form-field>
+                  </mat-grid-tile>
+                </mat-grid-list>
+                <div>
+                    <button mat-button matStepperNext class="btn btn-info" style="float:right">Next</button>
+                </div>
+              </form>
+            </mat-card-content>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your Address</ng-template>
+        <div class="row">
+            <div class="col-sm-2 col-md-1"></div>
+            <div class="col-sm-3 col-md-2" style="margin-top:8%;">
+              <div (click)="fileupload.click()" class="container">
+               <div *ngIf="imagepre==null">  
+                <img class="image" src="../../../../assets/profile/default-avatar.jpg">
+               </div>
+               <div *ngIf="imagepre!=null">
+                  <img class="image" src="{{imagepre}}">
+               </div>
+                <div class="overlay">
+                  <div class="text">
+                    <i class="fa fa-image upload-button"></i><br>
+                    <a class="text">change profile</a>
+                    <input #fileupload (change)="filechanged($event)" class="file-upload" type="file" accept="image/*" />
+                  </div>
+                </div>
+                <div style="font-size:1.5vw;">{{profile.firstname}}</div>
+              </div>
+            </div>
+            <div class="col-sm col-md">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-6 col-md-10 col-lg-12">
+                <mat-card-content>
+                  <form [formGroup]="secondFormGroup" class="my-form">
+                    <mat-grid-list cols="1" rowHeight="80px">
+                      <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                          <mat-label>House No</mat-label>
+                          <input matInput type="number" [(ngModel)]="profile.houseno" placeholder="House No" name="hno"  formControlName="hnoCtrl" required>
+                        </mat-form-field>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                          <mat-label>City</mat-label>
+                          <input matInput [(ngModel)]="profile.city" placeholder="City" name="city"  formControlName="cityCtrl" required>
+                        </mat-form-field>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Country:</mat-label>
+                          <input matInput [(ngModel)]="profile.country" placeholder="Country"  formControlName="countryCtrl" name="country" required>
+                        </mat-form-field>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Post Code</mat-label>
+                          <input matInput [(ngModel)]="profile.postcode" placeholder="Post Code"  formControlName="pnoCtrl" name="pcode">
+                        </mat-form-field>
+                      </mat-grid-tile>
+                    </mat-grid-list>
+                    <div style="text-align: right">
+                        <button mat-button matStepperPrevious class="btn btn-info" style="margin-right:2%">Back</button>
+                        <button mat-button matStepperNext class="btn btn-info">Next</button>
+                    </div>
+                  </form>
+                </mat-card-content>
+              </div>
+            </div>
+          </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div style="text-align: center;margin-top:10% ">
+      <h1>You are now done.</h1>
+      <div>
+        <button class="btn btn-info" mat-button matStepperPrevious style="margin-right:2%">Back</button>
+        <button class="btn btn-info" mat-button (click)="saveprofile()">save</button>
+      </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>

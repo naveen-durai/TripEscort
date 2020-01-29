@@ -1,0 +1,44 @@
+.navbar
+{
+  padding: 0%;
+}
+.navbar-light
+{
+  background-color:rgba(52, 132, 185, 0.774);
+  font-size: 100%;
+}
+.navbar-light .navbar-nav .nav-link {
+  color:white;
+  }
+.navbar-brand{
+    font-size: 1.5rem;
+    font-style: arial;
+}
+input[type="search"] { 
+    text-indent: 30px;
+    font-family:  FontAwesome, sans-serif;
+    height: 50px;
+    border-radius:50%; 
+  }
+.nav-link {
+      text-align:center;
+  }
+.navbar-nav .nav-item
+{
+  padding-left: 30px;
+}
+.btn.focus, .btn:focus {
+  box-shadow: none;
+}
+.btn
+{
+  color: white;
+}
+.dropdown-menu
+{
+  border-radius:10%; 
+}
+a,.clk4
+{
+  font-size: .8rem;
+}

@@ -1,0 +1,13 @@
+<div style="text-align:center;margin-top: 10%;">
+<form #formcontrol="ngForm" (ngSubmit)="onSubmit()">
+    Spotname:
+    <input type="text" name="spotname" [(ngModel)]="tour.spotname"><br><br>
+    Location:
+    <input type="text" name="location" [(ngModel)]="tour.location"><br><br>
+    District:
+    <input type="text" name="district" [(ngModel)]="tour.district"><br><br>
+    Spottype:
+    <input type="text" name="spottype" [(ngModel)]="tour.spottype"><br><br>
+    <input class="btn btn-info" type="submit">
+  </form>
+</div>

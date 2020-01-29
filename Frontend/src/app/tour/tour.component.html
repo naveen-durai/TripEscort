@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="row filter">
+    <div class="col-2"></div>
+    <div class="col">
+      <h4 style="padding-top:7px;">Sort By:</h4>
+    </div>
+    <div class="col">
+      <button class="btn btn-secondary" (click)="sortpopularity()">Popularity</button>
+    </div>
+    <div class="col">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle dbbtn" data-toggle="dropdown" aria-expanded="false">
+          Location
+        </button>
+        <div class="dropdown-menu shadow-lg p-3 mb-5 bg-grey">
+          <div *ngFor="let a of district;let i=index">
+            <input type="checkbox" name="location" (change)="toggleVisibilitydistrict($event,a)">{{a}}
+          </div><br>
+          <div style="text-align: center">
+            <button class="btn btn-info" (click)="filter()">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle dbbtn" data-toggle="dropdown" aria-expanded="false">
+          SpotType
+        </button>
+        <div class="dropdown-menu shadow-lg p-3 mb-5 bg-grey">
+          <div *ngFor="let a of ptype;let i=index">
+            <input type="checkbox" name="spottype" (change)="toggleVisibilityspottype($event,a)">{{a}}
+          </div><br>
+          <div style="text-align: center">
+            <button class="btn btn-info" (click)="filter()">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <hr><br><br>
+  <div class="row">
+    <div *ngFor="let a of tour" class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card-group">
+        <div class="card">
+          <div class="embed-responsive embed-responsive-16by9">
+            <img class="card-img-top embed-responsive-item"
+            src="../../assets/Tourist Places/{{a.location}}({{a.district}})/{{a.spotname}}({{a.spottype}}).jpg"
+            alt="Card image cap">
+          </div>
+          <div class="card-body">
+            <h1 class="card-title" style="text-align:center">{{a.spotname}}</h1>
+            <div class="row">
+              <div class="col">
+                <p class="card-text">
+                  <fa-icon icon="map-marker" size="1x"></fa-icon><span style="margin-left:10px;">{{a.location}}</span>
+                </p>
+              </div>
+              <div class="col">
+                <div class="dropdown">
+                  <button class="rat btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"  (click)="updatedrating(a.spotname)" style="margin-top:-8%;">
+                    Ratings
+                  </button>
+                  <div class="dropdown-menu shadow-lg p-3 mb-5 bg-white" (click)="dpdown($event)" style="text-align: center">
+                    <ngb-rating [(rate)]="currentrate" max="5" [readonly]="readonly"></ngb-rating>
+                    <div *ngIf="(!rated || currentrate==0) && islogin">
+                      <button class="btn btn-info" (click)="rating(a.spotname)" width="20px">Rate it</button>
+                    </div>
+                    <div *ngIf="rated || currentrate!=0">
+                      <hr>
+                      <pre>Ratings: <b>{{currentrate}}</b></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center" *ngIf="islogin">
+              <button class="btn btn-info" style="margin-right:5px" (click)="bookhotel()">Book Hotel</button>
+              <button class="btn btn-info" (click)="bookcab()">Book Cab</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div *ngIf="filtered"> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="#" (click)="setpage(navpage+prevpage,$event)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <div *ngFor="let p of pages;let i=index">
+              <li class="page-item"><a class="page-link pageclk{{i}}" href="#" (click)="setpage(i,$event)">{{i}}</a></li>
+            </div>
+            <li class="page-item">
+              <a class="page-link" href="#" (click)="setpage(navpage+nextpage,$event)" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+  <!-- </div> -->

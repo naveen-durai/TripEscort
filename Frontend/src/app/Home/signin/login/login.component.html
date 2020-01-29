@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Login Here</title>
+  </head>
+  <body>
+    <h1 style="text-align:center;">Login</h1>
+    <form (ngSubmit)="loginonSubmit()">
+        <div id="inp" class="input-group mb-2 mr-sm-1">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><fa-icon icon="envelope" size="1x"></fa-icon></div>
+            </div>
+            <input type="email" class="form-control" id="mailid" placeholder="Mail Id" name="mailid" [(ngModel)]="login.email" required>
+        </div>
+      <div id="inp" class="input-group mb-2 mr-sm-1">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><fa-icon icon="lock" size="1x"></fa-icon></div>
+        </div>
+        <input type="{{pass}}" class="form-control" id="pass" placeholder="Password" minlength="8" name="password" [(ngModel)]="login.password" required>
+        <div class="input-group-prepend">
+            <div class="input-group-text"><fa-icon (click)="changeicon()" icon="{{icon}}" size="1x"></fa-icon></div>
+        </div>
+      </div>
+      <div class="p-t-8 p-b-31" style="margin-left:45%;">
+          <a routerLink="">
+            Forgot password?
+          </a>
+      </div>
+     <div class="form-group form-check">
+     <label class="form-check-label">
+      <input class="form-check-input" type="checkbox"> Remember me
+     </label>
+     </div>
+    <input type="submit" class="login100-form-btn" name="login-submit" value="Login"><br><br>
+   </form>
+    <div class="txt1 text-center">
+      <span>
+        Or Sign Up Using
+      </span>
+    </div>
+    <div>
+      <a (click)="facebookredirect()" class="icon bg1" style="color:aliceblue">
+          <i class="fa fa-facebook"></i>
+      </a>
+      <a (click)="twitterredirect()" class="icon1 bg2" style="color:aliceblue">
+          <i class="fa fa-twitter"></i> 
+      </a>
+      <a (click)="googleredirect()" class="icon1 bg3" style="color:aliceblue">
+          <i class="fa fa-google"></i>
+      </a>
+    </div><br>
+    <div class="flex-col-c p-t-155">
+      <span class="txt1 p-b-17">
+        Or Sign Up Using
+      </span>
+      <a routerLink="../signup" (click)="setTitle('Signup')" class="txt2">
+        Sign Up
+      </a>
+    </div>
+  </body>
+</html>

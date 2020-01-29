@@ -1,0 +1,139 @@
+<div *ngIf="!editprof">
+    <div class="row">
+        <div class="col-sm-10 col-lg-11"> 
+            <h1 style="text-align:center;font-size:2vw;">Create Your Profile</h1>
+        </div>
+        <div class="col-sm-2 col-lg-1">
+            <button class="btn-danger" (click)="close()" style="font-size:1.2vw;">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row" style="margin-top:1%">
+        <div class="col" style="left:10%;margin-top:1%;">
+            <div *ngIf="changepage">
+                <p style="font-family: 'Exo 2';font-size: 2vw;">Personel Details</p>
+            </div>
+            <div *ngIf="!changepage">
+                <p style="font-family: 'Exo 2';font-size: 2vw;">Contact Address</p>
+            </div>
+        </div>
+        <div class="col" style="text-align: right">
+            <button (click)="edtprof()" class="btn btn-info" style="font-size:1.5vw;padding:1% 2% 1% 2%;">Edit Profile  <span style="font-size:1.2em;"><i class="fa fa-cog" ></i></span></button>
+        </div>
+    </div>
+    <div *ngIf="changepage">
+        <div class="row">
+            <div class="col-sm-4" style="left:15%;margin-top: 5%">
+                <div class="container">
+                    <div *ngIf="pi.imagename=='avatar' || pi.imagename==null">
+                        <img class="image" src="../../../../assets/profile/default-avatar.jpg">
+                    </div>
+                    <div *ngIf="pi.imagename==profile.email">
+                        <img class="image" [src]="pi.image" id="photo-id"/>
+                    </div>
+                    <div style="font-size:1.5vw;">{{profile.firstname}}</div>
+                </div>
+            </div>
+            <div class="col" style="margin-top:2%">
+                <form>
+                    <div class="form-group row">
+                        <label for="username" class="col-lg-2 col-md-4 col-form-label">FirstName:</label>
+                        <div class="col-lg col-md">
+                            <input class="form-control" type="text" name="firstname" [(ngModel)]="profile.firstname" readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="username" class="col-lg-2 col-md-4 col-form-label">LastName:</label>
+                        <div class="col-lg col-md">
+                            <input class="form-control" [(ngModel)]="profile.lastname" type="text" name="lastname"
+                            readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="username" class="col-lg-2 col-md-4 col-form-label">Birthday:</label>
+                        <div class="col-lg col-md">
+                            <input class="form-control" value="{{profile.birthday | date:'mediumDate'}}" type="text" name="birthday"
+                            readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="username" class="col-lg-2 col-md-4 col-form-label">Email:</label>
+                        <div class="col-lg col-md">
+                            <input class="form-control" type="text" name="email" [(ngModel)]="profile.email"
+                            readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="username" class="col-lg-2 col-md-4 col-form-label">Mobile No:</label>
+                        <div class="col-lg col-md">
+                            <input class="form-control" [(ngModel)]="profile.mobileno" type="text" name="mobileno"
+                            readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div  class="col-sm-8"></div>
+                        <div class="col-sm-4"  style="text-align: right">
+                            <button class="btn btn-info" (click)="vwpro()">Next</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!changepage">
+        <div class="row">
+            <div class="col-sm-4" style="left:15%;margin-top: 5%">
+                <div class="container">
+                    <div *ngIf="pi.imagename=='avatar'">
+                        <img class="image" src="../../../../assets/profile/default-avatar.jpg">
+                    </div>
+                    <div *ngIf="pi.imagename==profile.email">
+                        <img class="image" [src]="pi.image" id="photo-id"/>
+                    </div>
+                    <div style="font-size:1.5vw;">{{profile.firstname}}</div>
+                </div>
+            </div>
+            <div class="col" style="margin-top:2%">
+                <form>
+                    <div class="form-group row">
+                        <label for="username" class="col-lg-2 col-md-4 col-form-label">House No:</label>
+                        <div class="col-lg col-md">
+                            <input class="form-control" [(ngModel)]="profile.houseno" type="text" name="houseno"
+                            readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="username" class="col-lg-2 col-md-4 col-form-label">City:</label>
+                        <div class="col-lg col-md">
+                            <input class="form-control" [(ngModel)]="profile.city" id="name" type="text" name="city" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="username" class="col-lg-2 col-md-4 col-form-label">Country:</label>
+                        <div class="col-lg col-md">
+                            <input class="form-control" [(ngModel)]="profile.country" id="name" type="text" name="country" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="username" class="col-lg-2 col-md-4 col-form-label">Post Code:</label>
+                        <div class="col-lg col-md">
+                            <input class="form-control" [(ngModel)]="profile.postcode" id="name" type="text" name="postcode"
+                            readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-8" style="text-align: right">
+                            <button class="btn btn-info" style="margin-right:3px" (click)="vwpro1()">Back</button>
+                            <button class="btn btn-info" (click)="close()">Exit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="editprof">
+    <app-editprofile (viewprof)="chgval($event)"></app-editprofile>
+</div>

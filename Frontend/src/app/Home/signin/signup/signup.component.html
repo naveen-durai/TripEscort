@@ -1,0 +1,148 @@
+<html>
+<head>
+  <title>signup here</title>
+</head>
+<body>
+<div class="login-box">
+  <h1 style="text-align:center;">Sign up</h1><br>
+  <form #formcontrol="ngForm" (ngSubmit)="onSubmit(formcontrol,$event)">
+    <div class="container">
+      <div class="form-group row">
+        <label class="col-sm-2"></label>
+        <label for="username" class="col-lg-2 col-md-3 col-form-label">Username:</label>
+        <div class="col-lg-7 col-md-5">
+          <input class="form-control" id="name" type="text" name="name" [(ngModel)]="signup.name" placeholder="Username"
+          #namecontrol="ngModel" required minlength="4" />
+          <div *ngIf="namecontrol.invalid && signupsubmit && (namecontrol.dirty || namecontrol.touched)" class="alrt">
+            <div *ngIf="namecontrol.errors.required">
+              Name is required.
+            </div>
+            <div *ngIf="namecontrol.errors.minlength">
+              Name must be at least 4 characters long.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2"></label>
+        <label for="email" class="col-lg-2 col-md-3 col-form-label">Email:</label>
+        <div class="col-lg-7 col-md-5">
+          <input class="form-control" required type="email" name="email" [(ngModel)]="signup.email" placeholder="E-mail"
+          #mailcontrol="ngModel" email/>
+          <div *ngIf="mailcontrol.invalid && signupsubmit && (mailcontrol.dirty || mailcontrol.touched)" class="alrt">
+            <div *ngIf="mailcontrol.errors.required">
+              MailId is required.
+            </div>
+            <div *ngIf="mailcontrol.errors.email">
+              Enter Valid MailId
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2"></label>
+        <label class="col-lg-2 col-md-3 col-form-label" for="gender">Gender:</label>
+        <div class="col-lg-7 col-md-5">
+          <select class="custom-select" id="gender" name="gender" [(ngModel)]="signup.gender" required
+          #gendercontrol="ngModel">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <div *ngIf="gendercontrol.invalid && signupsubmit && (gendercontrol.dirty || gendercontrol.touched)"
+        class="alrt">
+        <div *ngIf="gendercontrol.errors.required">
+          Gender is required.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2"></label>
+    <label for="password" class="col-lg-2 col-md-3 col-form-label">Password:</label>
+    <div class="col-lg-7 col-md-5">
+      <div class="form-group row ">
+        <div id="inp" class="input-group col-lg-12">
+          <input type="{{pass}}" class="form-control" id="pass" placeholder="Password" name="password"
+          [(ngModel)]="signup.password" minlength="8" required #passcontrol="ngModel" (blur)="ckpass()">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <fa-icon (click)="changeicon()" icon="{{icon}}" size="1x"></fa-icon>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="checkpass" class="alrt">
+          Password Should contain atleast one letter,number,specialcharacter
+        </div>
+        <div *ngIf="passcontrol.invalid && signupsubmit && (passcontrol.dirty || passcontrol.touched)"
+        class="alrt1">
+        <div *ngIf="passcontrol.errors.required">
+          Password is required.
+        </div>
+        <div *ngIf="passcontrol.errors.minlength">
+          Password must be at least 8 characters long.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group row confpass">
+  <label class="col-sm-2"></label>
+  <label for="confpassword" class="col-lg-2 col-md-3 col-form-label cnfpasslab">Confirm Password:</label>
+  <div class="col-lg-7 col-md-5">
+    <div class="form-group row ">
+      <div id="inp" class="input-group col-lg-12">
+        <input type="{{pass1}}" class="form-control" id="pass" placeholder="Confirm Password" name="confpassword"
+        [(ngModel)]="confirmpassword" minlength="8" required #confpasscontrol="ngModel"
+       >
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <fa-icon (click)="changeicon1()" icon="{{icon1}}" size="1x"></fa-icon>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="checkconfpass" class="alrt">
+        Password Mismatch
+      </div>
+      <div *ngIf="confpasscontrol.invalid && signupsubmit && (confpasscontrol.dirty || confpasscontrol.touched)"
+      class="alrt1">
+      <div *ngIf="confpasscontrol.errors.required">
+        Confirm Password is required.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="text-center">
+  <input type="submit" name="signup_submit" value="Sign Up">
+</div>
+</div>
+</form><br>
+<div class="txt1 text-center">
+  <span>
+    Or Sign Up Using
+  </span>
+</div><br>
+<div class="text-center">
+  <a (click)="facebookredirect()" class="icon bg1" style="color:aliceblue">
+    <i class="fa fa-facebook"></i>
+  </a>
+  <a (click)="twitterredirect()" class="icon1 bg2" style="color:aliceblue">
+    <i class="fa fa-twitter"></i>
+  </a>
+  <a (click)="googleredirect()" class="icon1 bg3" style="color:aliceblue">
+    <i class="fa fa-google"></i>
+  </a>
+</div>
+<div *ngIf="vlddata">
+  <div class="success">
+    <h3>You Succesfully Logged in<a routerLink="../app-login">click here to login</a></h3>
+  </div>
+</div>
+<div *ngIf="!vlddata && !signupsubmit">
+  <div class="alrt" style="text-align: center">
+    <h3>Failed to Signup Check Field Credentials</h3>
+  </div>
+</div>
+</div>
+</body>
+</html>

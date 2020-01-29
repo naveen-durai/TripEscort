@@ -1,0 +1,75 @@
+<html>
+<head>
+  <title>{{titles}}</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand mr-auto" routerLink="home">
+      <span style="color: red">trip</span><span style="color:green">Escort</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarNav">
+    <div class="ml-auto">
+      <ul class="navbar-nav navbar">
+        <li class="nav-item">
+          <a class="nav-link clk1" (click)="changecolor(1);setTitle('Tour')" routerLink="tour">
+            <fa-icon class="icon" icon="map-marked-alt" size="lg"></fa-icon><br>
+            <span>Tour</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!islogin">
+          <a class="nav-link clk2" (click)="changecolor(2);setTitle('AboutUs')" routerLink="">
+            <fa-icon class="icon" icon="users" size="lg"></fa-icon><br>
+            <span>About Us</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!islogin">
+          <a class="nav-link clk3" (click)="changecolor(3);setTitle('home')" routerLink="signin">
+            <fa-icon class="icon" icon="sign-in-alt" size="lg"></fa-icon><br>
+            <span>Sigin</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="islogin">
+          <a class="nav-link clk5" (click)="changecolor(5);setTitle('feedback')" routerLink="feedback">
+            <fa-icon class="icon" icon="comments" size="lg"></fa-icon><br>
+            <span>Feedback</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="islogin">
+          <div class="dropdown">
+            <button class="btn rounded-circle clk6" (click)="changecolor(6);setTitle('Profile')"
+            data-toggle="dropdown" aria-expanded="false">
+            <!-- <div *ngIf="=='male'">
+              <img src="../assets/profile/male.png"/>
+            </div>
+            <div *ngIf="=='female'">
+              <img src="../assets/profile/female.png"/>
+            </div> -->
+            <div class="clk4">
+              <fa-icon class="icon" icon="user-circle" size="lg"></fa-icon><br>
+              <span>Profile</span>
+            </div>
+          </button>
+          <div class="dropdown-menu shadow-lg p-3 mb-5 bg-grey">
+            <a class="dropdown-item" (click)="dialogbox('view')">View Profile</a>
+            <a class="dropdown-item" (click)="dialogbox('booking')">Booking Details</a>
+            <a class="dropdown-item" (click)="dialogbox('signout')">SignOut</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <form class="form-inline">
+          <input class="form-control" type="search" placeholder="&#xf002;   Search" aria-label="Search">
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+</body>
+<router-outlet></router-outlet>
+</html>
